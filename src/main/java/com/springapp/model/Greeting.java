@@ -1,9 +1,27 @@
 package com.springapp.model;
 
+import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name = "GREETINGS")
 public class Greeting {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String message;
+	
+	public Greeting() {
+		id = 0;
+		message = "";
+	}
 	
 	public Greeting(long id, String message) {
 		this.id = id;

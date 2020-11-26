@@ -23,6 +23,8 @@ import com.springapp.service.IGreetingService;
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
+	private static final String template = "Hello, %s!";
+	private final AtomicLong counter = new AtomicLong();
 	
 	@Autowired
 	private IGreetingService greetingService;
@@ -31,6 +33,12 @@ public class GreetingController {
 	public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
 		User user = new User();
 		user.setfName(name);
+		return greetingService.addGreeting(user);
+	}
+	
+	
+	@PostMapping("/post")
+	public Greeting greeting(@RequestBody User user) {
 		return greetingService.addGreeting(user);
 	}
 }
